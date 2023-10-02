@@ -17,4 +17,6 @@ use App\Http\Controllers\Candidate;
 Route::get('/', [Candidate::class, 'home']);
 Route::post('/getJobs', [Candidate::class, 'getJobs']);
 Route::get('/apply', [Candidate::class, 'apply']);
+Route::post('/applyJob', [Candidate::class, 'applyJob']);
+
 

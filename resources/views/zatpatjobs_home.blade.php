@@ -102,48 +102,55 @@
             </div>
             <div class="job_lists m-0">
               <div class="row" id="tblData"></div>
+
               <div class="row">
                 <div class="col-lg-12">
                   <div class="pagination_wrap">
-                    <ul>
-                      <li class="" id="lstPrevPage">
-                        <a href="javascript:loadData(-1);">
+                  <ul>
+                      <li class="hideImp" id="lstPrevPage" title="Prev">
+                        <a href="javascript:void(0);">
                           <i class="ti-angle-left"></i>
                         </a>
                       </li>
-                      <li class="" id="lstPrevPage2">
+                      <!--
+                      <li class="hideImp" id="lstPrevPage2">
                         <a href="javascript:loadData(-1);">
                           <span>
                             <span id="lblPrevPageNumber"></span>
                           </span>
                         </a>
                       </li>
-                      <li class="" id="lstCurrPage">
-                        <a href="javascript:loadData(0);">
+                      -->
+                      <li class="" id="lstCurrPage" title="Current Page">
+                        <a href="javascript:void(0);">
                           <span>
-                            <span id="lblCurrPageNumber"></span>
+                            <span id="lblCurrPageNumber">1</span>
                           </span>
                         </a>
                       </li>
-                      <li class="" id="lstNextPage2">
+                      <!--
+                      <li class="hideImp" id="lstNextPage2">
                         <a href="javascript:loadData(1);">
                           <span>
                             <span id="lblNextPageNumber"></span>
                           </span>
                         </a>
                       </li>
-                      <li class="" id="lstNextPage">
-                        <a href="javascript:loadData(1);">
+                      -->
+                      <li class="hideImp" id="lstNextPage" title="Next">
+                        <a href="javascript:void(0);">
                           <i class="ti-angle-right"></i>
                         </a>
                       </li>
                       <li class="" style="margin: auto; float: right;">
-                        <span id="lblRowCount"></span> Jobs found
+                          <span id="lblRowCount">9</span>
+                          Jobs found
                       </li>
-                    </ul>
+                  </ul>
                   </div>
                 </div>
               </div>
+            
             </div>
           </div>
         </div>
@@ -197,34 +204,66 @@
       </div>
     </div>
   </div>
+  <style>
+  .azd-wrapper .dataTables_wrapper .dataTables_paginate {
+    float: right;
+    text-align: right;
+    padding-top: 15px;
+}
+
+.paginate_button{
+  padding: 9px 27px 9px 27px;
+    font-size: 14px;
+    color: #FECC00 !important;
+    border: 1px solid #FECC00;
+    background: transparent;
+    display: inline-block;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    border-radius: 5px;
+    text-align: center;
+    text-transform: capitalize;
+    transition: 0.3s;
+    cursor: pointer;
+}
+  </style>
   @endsection
   @push("js")
   <script>
     $(function(){
       setTimeout(function(){
-        getJobs();
-      }, 5000);
+        getJobs(1);
+      }, 500);
     })
   
-    function getJobs(){
+    function getJobs(page){
       var accessToken = "{{$accessToken}}";
       var requrl = "getJobs";
-      var jsondata = {"_token":CSRFTOKEN,"accessToken":accessToken};
+      var jsondata = {"_token":CSRFTOKEN,"accessToken":accessToken,"page":page};
       callajax(requrl, jsondata, function(resp){
-
 
           if(resp.C == 100){
             var result = resp.R;
             var jobs = result.data;
+            var info = result.info;
             var jobListHtml = '';
             $.each(jobs, function(i,v){
 
               var tmpJobId = v.id;
               var tmpJobOpeningName =v.Job_Opening_Name;
-              var tmpJobOpeningId = v.Job_Opening_ID;
-              var tmpnoOfpostions = v.Number_of_Positions;
               var tmpJobtitle = v.Posting_Title;
 
+              var tmpIndustry = v.Industry;
+              var tmpSalary = v.Salary;
+              var tmpCurrencySymbol = v.$currency_symbol;
+              var tmpState = v.State;
+              var tmpCountry = v.Country;
+              var tmpCity = v.City;
+              var tmpDateOpened = v.Date_Opened;
+              
+              var tmpJobOpeningId = "";
+              var tmpnoOfpostions = "";
+             
               jobListHtml += '<div class="col-lg-12 col-md-12">\
                 <div class="single_jobs white-bg d-flex justify-content-between">\
                   <div class="jobs_left d-flex align-items-center">\
@@ -233,24 +272,24 @@
                     </div>\
                     <div class="jobs_conetent">\
                       <a href="javascript:void(0)">\
-                        <h4>'+tmpJobtitle+'<span class="numberOfPosts"> [ '+tmpnoOfpostions+' Posts ]</span>\
+                        <h4>'+tmpJobtitle+'<span style="display:none;" class="numberOfPosts"> [ '+tmpnoOfpostions+' Posts ]</span>\
                         </h4>\
                       </a>\
-                      <div style="display:none" class="links_locat d-flex align-items-center">\
+                      <div class="links_locat d-flex align-items-center">\
                         <div class="location">\
                           <p>\
-                            <i class="fa fa-map-marker"></i>Jamnagar, Gujarat, India\
+                            <i class="fa fa-map-marker"></i>'+tmpCity+', '+tmpState+', '+tmpCountry+'\
                           </p>\
                         </div>\
-                        <div class="location">\
+                        <div style="display:none;" class="location">\
                           <p>\
                             <i class="fa fa-clock-o"></i>Up to 2 years\
                           </p>\
                         </div>\
                       </div>\
-                      <div style="display:none" class="links_locat d-flex align-items-center">\
+                      <div class="links_locat d-flex align-items-center">\
                         <div class="location">\
-                          <p>₹ 10000 - 15000 /year </p>\
+                          <p>'+tmpCurrencySymbol+' '+tmpSalary+' /month </p>\
                         </div>\
                       </div>\
                     </div>\
@@ -260,7 +299,7 @@
                       <a href="apply?jobId='+tmpJobId+'" class="boxed-btn3">Apply</a>\
                     </div>\
                     <div class="date">\
-                      <p>Posted On 10/23/2020</p>\
+                      <p>Posted On '+tmpDateOpened+'</p>\
                     </div>\
                   </div>\
                 </div>\
@@ -268,12 +307,33 @@
 
                 var lastIdx = Object.keys(jobs).length - 1; 
                 if(i == lastIdx){
-                  $("#tblData").append(jobListHtml);
+                  $("#tblData").html(jobListHtml);
                 }
 
             });
-          }
 
+            if(info.page > 1){
+              $("#lstPrevPage").removeClass("hideImp");
+            }else{
+              $("#lstPrevPage").addClass("hideImp");
+            }
+            
+            var prevPage = info.page - 1;
+            var nextPage = info.page + 1;
+            
+            $("#lblCurrPageNumber").html(info.page);
+            $("#lstPrevPage").attr("onclick","getJobs("+prevPage+");");
+            $("#lstNextPage").attr("onclick","getJobs("+nextPage+");");
+
+            if(info.more_records == true){
+              //show next button
+              $("#lstNextPage").removeClass("hideImp");
+              
+            }else{
+              //hide next button
+              $("#lstNextPage").addClass("hideImp");
+            }
+          }
 
       });
     }
