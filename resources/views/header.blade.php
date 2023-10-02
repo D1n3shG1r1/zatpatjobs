@@ -97,25 +97,25 @@
                     <nav>
                       <ul id="navigation">
                         <li>
-                          <a href="Default.aspx">home</a>
+                          <a href="{{url('')}}">home</a>
                         </li>
                         <li>
-                          <a href="Default.aspx">Browse Job</a>
+                          <a href="{{url('')}}">Browse Job</a>
                         </li>
                         <li>
-                          <a href="ResumeUpload.aspx">Upload Resume</a>
+                          <a href="#">Upload Resume</a>
                         </li>
                         <li>
-                          <a href="AboutUs.aspx">About us</a>
+                          <a href="#">About us</a>
                         </li>
                         <li>
-                          <a href="ContactUs.aspx">Contact</a>
+                          <a href="#">Contact</a>
                         </li>
                         <li id="dvNotLoggedin2" class="toShowInMobileScreen">
-                          <a href="Login.aspx">Login</a>
+                          <a href="#">Login</a>
                         </li>
                         <li id="dvPostJob2" class="toShowInMobileScreen">
-                          <a href="PostJob.aspx">Post A Job </a>
+                          <a href="#">Post A Job </a>
                         </li>
                       </ul>
                     </nav>
@@ -124,10 +124,10 @@
                 <div class="col-xl-3 col-lg-3 d-none d-lg-block">
                   <div class="Appointment">
                     <div class="phone_num d-none d-xl-block">
-                      <a href="Login.aspx" id="dvNotLoggedin">Login</a>
+                      <a href="#" id="dvNotLoggedin">Login</a>
                     </div>
                     <div class="d-none d-lg-block">
-                      <a class="boxed-btn3" href="PostJob.aspx">Post a Job</a>
+                      <a class="boxed-btn3" href="#">Post a Job</a>
                     </div>
                   </div>
                 </div>
