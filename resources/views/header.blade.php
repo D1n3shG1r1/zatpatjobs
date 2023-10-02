@@ -5,10 +5,10 @@
         margin: 0;
       }
 
-      .numberOfPosts {
+      /*.numberOfPosts {
         font-size: 14px;
       }
-
+      */    
       .select2-container {
         margin-bottom: 0.5em;
         width: 100% !important;
@@ -27,7 +27,7 @@
       }
 
       .select2-container .select2-selection--single {
-        height: 50px;
+        height: 40px;
       }
 
       .select2-container--default .select2-selection--single {
@@ -48,10 +48,10 @@
 
       .select2-container--default .select2-selection--single .select2-selection__rendered,
       .select2-container--default .select2-selection--single .select2-selection__arrow {
-        line-height: 50px;
+        line-height: 40px;
         color: #666;
         font-size: 16px;
-        height: 35px;
+        height: 30px;
         right: 15px;
         width: 25px;
       }
@@ -69,6 +69,7 @@
       .select2-container .select2-search--inline .select2-search__field {
         margin-left: 10px;
       }
+      
     </style>
     <!-- header-start -->
     <style>

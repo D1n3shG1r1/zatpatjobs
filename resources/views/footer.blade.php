@@ -30,7 +30,7 @@
 <!--/ footer end  -->
 <!-- link that opens popup -->
 <!-- JS here -->
-
+<!--
 <script src="js/vendor/modernizr-3.5.0.min.js"></script>
 <script src="js/vendor/jquery-1.12.4.min.js"></script>
 <script src="js/popper.min.js"></script>
@@ -48,21 +48,26 @@
 <script src="js/jquery.slicknav.min.js"></script>
 <script src="js/jquery.magnific-popup.min.js"></script>
 <script src="js/plugins.js"></script>
-<!-- <script src="js/gijgo.min.js"></script> -->
+<script src="js/gijgo.min.js"></script>
 <script src="js/range.js"></script>
+-->
 <!--contact js-->
-<script src="js/contact.js"></script>
+<!--<script src="js/contact.js"></script>
 <script src="js/jquery.ajaxchimp.min.js"></script>
 <script src="js/jquery.form.js"></script>
 <script src="js/jquery.validate.min.js"></script>
 <script src="js/mail-script.js"></script>
 <script src="js/sweetalert2.all.js"></script>
 <script src="js/main.js"></script>
-<script src="js/script.js"></script>
+-->
 
+
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="js/sweetalert2.all.js"></script>
+<script src="js/script.js"></script>
 <script>
   $(function() {
-    $("#slider-range").slider({
+    /*$("#slider-range").slider({
       range: true,
       min: 0,
       max: 24600,
@@ -72,6 +77,7 @@
       }
     });
     $("#amount").val("$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1) + "/ Year");
+    */
     //$("#slider-rangeSalary").slider({
     //    range: true,
     //    min: 0,
@@ -82,8 +88,8 @@
     //    }
     //});
     //$("#salary").val($("#slider-rangeSalary").slider("values", 0) + " - " + $("#slider-rangeSalary").slider("values", 1) + "/ Year");
+    
+    $('select').select2();
+
   });
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-<script src="js/sweetalert2.all.js"></script>
-
